@@ -18,7 +18,6 @@ const liquibase = require('liquibase');
 liquibase({
   defaultsFile: 'resources/liquibase/liquibase.properties'
 
-  // liquibase: 'lib/liquibase-core-3.5.3.jar',
   // driver: 'org.postgresql.Driver',
   // classpath: 'lib/postgresql-9.4-1201.jdbc4.jar',
   // changeLogFile: 'resources/liquibase/db.changelog.xml',
