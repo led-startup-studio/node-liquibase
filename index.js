@@ -3,22 +3,22 @@ const childProcess = require('child_process');
 class Liquibase {
 	constructor(params = {}) {
 		const defaultParams = {
-			driver: 'org.postgresql.Driver',
-			classpath: '.:lib/liquibase.jar:lib/:lib/logback-classic-1.2.3.jar:lib/logback-core-1.2.3.jar:lib/postgresql-42.2.6.jar:lib/slf4j-api-1.7.25.jar:lib/snakeyaml-1.23.jar'
+			classpath: '.:lib/liquibase.jar:lib/:lib/logback-classic-1.2.3.jar:lib/logback-core-1.2.3.jar:lib/postgresql-42.2.6.jar:lib/slf4j-api-1.7.25.jar:lib/snakeyaml-1.23.jar',
+			driver: 'org.postgresql.Driver'
 		};
 		this.params = Object.assign({}, defaultParams, params);
 	}
 
 	get command() {
-		let cmd = `java `;
+		let cmd = `java -cp ${this.params.classpath} liquibase.integration.commandline.Main`;
 		Object.keys(this.params).forEach(key => {
-			if (key === 'liquibase') {
+			if (key === 'classpath') {
 				return;
 			}
+
 			const value = this.params[key];
 			cmd = `${cmd} --${key}=${value}`;
 		});
-		cmd = cmd + ' liquibase.integration.commandline.Main'
 
 		return cmd;
 	}
