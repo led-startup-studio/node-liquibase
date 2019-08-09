@@ -4,13 +4,13 @@ class Liquibase {
 	constructor(params = {}) {
 		const defaultParams = {
 			driver: 'org.postgresql.Driver',
-			classpath: 'lib/postgresql-9.4-1201.jdbc4.jar'
+			classpath: '.:lib/liquibase.jar:lib/:lib/logback-classic-1.2.3.jar:lib/logback-core-1.2.3.jar:lib/postgresql-42.2.6.jar:lib/slf4j-api-1.7.25.jar:lib/snakeyaml-1.23.jar'
 		};
 		this.params = Object.assign({}, defaultParams, params);
 	}
 
 	get command() {
-		let cmd = `java ${this.params.liquibase}`;
+		let cmd = `java `;
 		Object.keys(this.params).forEach(key => {
 			if (key === 'liquibase') {
 				return;
@@ -19,7 +19,7 @@ class Liquibase {
 			cmd = `${cmd} --${key}=${value}`;
 		});
 		cmd = cmd + ' liquibase.integration.commandline.Main'
-		
+
 		return cmd;
 	}
 
