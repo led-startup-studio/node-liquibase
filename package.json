@@ -1,13 +1,13 @@
 {
-  "name": "liquibase",
-  "version": "0.0.3",
+  "name": "led-liquibase",
+  "version": "0.0.4",
   "description": "Node.js wrap for Liquibase",
   "license": "MIT",
-  "repository": "pablodenadai/node-liquibase",
+  "repository": "led-startup-studio/node-liquibase",
   "author": {
-    "name": "Pablo De Nadai",
-    "email": "pablodenadai@gmail.com",
-    "url": "https://github.com/pablodenadai/node-liquibase"
+    "name": "LED Startup Studio",
+    "email": "contato@ledstartup.studio",
+    "url": "https://github.com/led-startup-studio/node-liquibase"
   },
   "engines": {
     "node": ">=6"
