@@ -3,7 +3,6 @@ const childProcess = require('child_process');
 class Liquibase {
 	constructor(params = {}) {
 		const defaultParams = {
-			liquibase: 'lib/liquibase-core-3.5.3.jar',
 			driver: 'org.postgresql.Driver',
 			classpath: 'lib/postgresql-9.4-1201.jdbc4.jar'
 		};
@@ -11,7 +10,7 @@ class Liquibase {
 	}
 
 	get command() {
-		let cmd = `java -jar ${this.params.liquibase}`;
+		let cmd = `java ${this.params.liquibase}`;
 		Object.keys(this.params).forEach(key => {
 			if (key === 'liquibase') {
 				return;
@@ -19,6 +18,8 @@ class Liquibase {
 			const value = this.params[key];
 			cmd = `${cmd} --${key}=${value}`;
 		});
+		cmd = cmd + ' liquibase.integration.commandline.Main'
+		
 		return cmd;
 	}
 
